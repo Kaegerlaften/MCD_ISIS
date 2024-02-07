@@ -1,5 +1,6 @@
 package monprojet.entity;
 import java.time.LocalDate;
+import java.util.ArrayList;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.*;
@@ -11,7 +12,8 @@ import lombok.*;
 @Getter @Setter @NoArgsConstructor @RequiredArgsConstructor @ToString
 @Entity
 public class Employe {
-    @Id  @GeneratedValue(strategy = GenerationType.IDENTITY) 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer matricule;
 
     @NonNull
@@ -19,4 +21,7 @@ public class Employe {
 
     @Email
     private String email;
+
+    @OneToMany(mappedBy = "employee")
+    private ArrayList<ProjectAssignment> projectAssignments;
 }
